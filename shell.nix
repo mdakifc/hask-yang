@@ -3,9 +3,8 @@ let
 in
 pkgs.mkShell {
   buildInputs = [
-    pkgs.ghc
+    pkgs.haskell.compiler.ghc98
     pkgs.cabal-install
-    pkgs.haskellPackages.parsec
   ];
   shellHook = ''
     cabal update

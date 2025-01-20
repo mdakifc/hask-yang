@@ -1,0 +1,16 @@
+# Grammar Tasks:
+
+# Parser Tasks:
+- [ ] [#P1] Handle URI for namespace => We can't simpler parse OC models without it
+- [ ] [#P2] Share common deps between the library, exec and test rather than having to specify them
+            separately. Not sure cabal has a way to do it
+- [ ] [#P3] Organize the modules under `Language.HaskYang.<module>` similar to `Language.C.<module>`
+- [ ] [#P3] Do we need to support unicode or ByteString.Char8 is good enough?
+- [ ] [#P3] Is there a nicer way to deal with spaces => there is certainly a lot of implicit assumption
+            => Current Assumptions are:
+                1. Each combinator will be wrapped by skipSpaces
+                2. Each parser segment inside a do-statement will consider spaces to its right
+- [ ] [REACH] Can we generate a fuzzer that is driven by the parser combinator?
+
+# Tests:
+- [ ] Write basic tests

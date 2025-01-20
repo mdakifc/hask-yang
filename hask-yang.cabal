@@ -53,17 +53,16 @@ extra-doc-files:    CHANGELOG.md
 common warnings
     ghc-options: -Wall
 
-executable hask-yang
-    -- Import common warning flags.
+library
     import:           warnings
-
-    -- .hs or .lhs file containing the Main module.
-    main-is:          Main.hs
-
-    -- Modules included in this executable, other than Main.
-    -- other-modules:
-
-    -- LANGUAGE extensions used by modules in this package.
+    hs-source-dirs:      src
+    exposed-modules:     HaskYang
+    build-depends:
+          base >=4.19.0.0 && <= 4.21.0.0
+        , parsec >=3.1.17.0
+        , bytestring >= 0.12.0.0
+    other-modules:    Grammar
+                    , ParserHelpers
     other-extensions:
           OverloadedStrings
         , OverloadedLists
@@ -72,15 +71,34 @@ executable hask-yang
         , ScopedTypeVariables
         , RecordWildCards
         , LambdaCase
+    default-language:    Haskell2010
 
-    -- Other library packages from which modules are imported.
+executable hask-yang
+    import:           warnings
+    main-is:          Main.hs
+    other-modules:    HaskYang
+                    , ParserHelpers
+                    , Grammar
+    other-extensions:
+          OverloadedStrings
+        , OverloadedLists
+        , ImportQualifiedPost
+        , NumericUnderscores
+        , ScopedTypeVariables
+        , RecordWildCards
+        , LambdaCase
     build-depends:
-          base ^>=4.17.2.1
-        , parsec ^>=3.1.17.0
-        
-
-    -- Directories containing source files.
+          base >=4.19.0.0 && <= 4.21.0.0
+        , parsec >=3.1.17.0
+        , bytestring >= 0.12.0.0
     hs-source-dirs:   src
 
     -- Base language which the package is written in.
     default-language: GHC2021
+
+Test-Suite hask-yang-tests
+    type:                    exitcode-stdio-1.0
+    hs-source-dirs:          test
+    main-is:                 BasicTest.hs
+    build-depends:           base, hask-yang, HUnit
+    default-language:        Haskell2010
